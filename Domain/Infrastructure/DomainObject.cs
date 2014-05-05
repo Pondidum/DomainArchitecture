@@ -10,11 +10,11 @@ namespace Domain.Infrastructure
 
 		private readonly List<MethodInfo> _domainEventHandlers;
 		private readonly List<DomainEvent> _events;
-		private int _id;
+		private int _nextEventSequenceID;
 
 		public DomainObject()
 		{
-			_id = 0;
+			_nextEventSequenceID = 0;
 			_events = new List<DomainEvent>();
 
 			_domainEventHandlers = GetType()
@@ -26,12 +26,12 @@ namespace Domain.Infrastructure
 
 		protected void ApplyEvent(DomainEvent domainEvent)
 		{
-			domainEvent.SequenceID = _id;
+			domainEvent.SequenceID = _nextEventSequenceID;
 
 			Apply(domainEvent);
 			_events.Add(domainEvent);
 
-			_id++;
+			_nextEventSequenceID++;
 		}
 
 		private void Apply(DomainEvent domainEvent)
@@ -67,7 +67,7 @@ namespace Domain.Infrastructure
 				lastID = domainEvent.SequenceID;
 			}
 
-			_id = lastID + 1;
+			_nextEventSequenceID = lastID + 1;
 		}
 	}
 }
