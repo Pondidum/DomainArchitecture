@@ -48,6 +48,8 @@ namespace Domain.Infrastructure
 			}
 
 			specificMethod.Invoke(this, new object[] { domainEvent });
+
+			domainEvent.AggregateID = ID;
 		}
 
 		IEnumerable<DomainEvent> IEventStream.GetEvents()
