@@ -41,12 +41,12 @@
   <ItemGroup>
     <Compile Include="Address.cs" />
     <Compile Include="Candidate.cs" />
-    <Compile Include="IEventStream.cs" />
+    <Compile Include="Infrastructure\IEventStream.cs" />
     <Compile Include="Infrastructure\DomainEventHandlerNotFoundException.cs" />
-    <Compile Include="DomainObject.cs" />
+    <Compile Include="Infrastructure\DomainObject.cs" />
     <Compile Include="Email.cs" />
     <Compile Include="Events\NewCandidateDomainEvent.cs" />
-    <Compile Include="DomainEvent.cs" />
+    <Compile Include="Infrastructure\DomainEvent.cs" />
     <Compile Include="Infrastructure\Extensions.cs" />
     <Compile Include="Phone.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

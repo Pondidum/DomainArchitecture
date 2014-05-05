@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Domain.Events;
+using Domain.Infrastructure;
 
 namespace Domain
 {

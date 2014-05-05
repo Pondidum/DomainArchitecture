@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Domain.Infrastructure;
 
-namespace Domain
+namespace Domain.Infrastructure
 {
 	public class DomainObject : IEventStream
 	{
