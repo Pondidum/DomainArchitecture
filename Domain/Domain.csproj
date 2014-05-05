@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Address.cs" />
     <Compile Include="Candidate.cs" />
+    <Compile Include="IEventStream.cs" />
     <Compile Include="Infrastructure\DomainEventHandlerNotFoundException.cs" />
     <Compile Include="DomainObject.cs" />
     <Compile Include="Email.cs" />
