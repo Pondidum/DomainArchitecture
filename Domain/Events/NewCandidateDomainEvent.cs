@@ -2,7 +2,7 @@
 
 namespace Domain.Events
 {
-	public class NewCandidateDomainEvent : IDomainEvent
+	public class NewCandidateDomainEvent : DomainEvent
 	{
 		public string Name { get; private set; }
 		public DateTime DoB { get; private set; }

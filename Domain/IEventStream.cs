@@ -4,8 +4,8 @@ namespace Domain
 {
 	public interface IEventStream
 	{
-		IEnumerable<IDomainEvent> GetEvents();
+		IEnumerable<DomainEvent> GetEvents();
 		void Clear();
-		void LoadFromEvents(IEnumerable<IDomainEvent> events);
+		void LoadFromEvents(IEnumerable<DomainEvent> events);
 	}
 }

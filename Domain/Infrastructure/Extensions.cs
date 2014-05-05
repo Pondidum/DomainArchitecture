@@ -11,6 +11,11 @@ namespace Domain.Infrastructure
 			return self.GetInterfaces().Contains(typeof (T));
 		}
 
+		public static Boolean Inherits<T>(this Type self)
+		{
+			return typeof (T).IsAssignableFrom(self);
+		}
+
 		public static Boolean OneOnly<T>(this IEnumerable<T> self)
 		{
 			return self.Take(2).Count() == 1;
