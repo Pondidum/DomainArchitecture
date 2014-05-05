@@ -18,7 +18,7 @@ namespace Domain
 		public IEnumerable<Phone> PhoneNumbers { get { return _phones; } }
 		public IEnumerable<Email> EmailAddresses { get { return _emails; } }
 
-		private Candidate()
+		public Candidate()
 		{
 			_addresses = new List<Address>();
 			_phones = new List<Phone>();
