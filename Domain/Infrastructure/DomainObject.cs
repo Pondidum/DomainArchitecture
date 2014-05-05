@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
@@ -11,6 +12,8 @@ namespace Domain.Infrastructure
 		private readonly List<MethodInfo> _domainEventHandlers;
 		private readonly List<DomainEvent> _events;
 		private int _nextEventSequenceID;
+
+		public Guid ID { get; protected set; }
 
 		public DomainObject()
 		{

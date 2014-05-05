@@ -35,6 +35,7 @@ namespace Domain
 
 		private void OnNewCandidate(NewCandidateDomainEvent domainEvent)
 		{
+			ID = domainEvent.CandidateID;
 			Name = domainEvent.Name;
 			DoB = domainEvent.DoB;
 		}
