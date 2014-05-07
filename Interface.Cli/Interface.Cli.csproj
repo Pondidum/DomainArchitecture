@@ -59,6 +59,10 @@
       <Project>{38eb3a57-f6c4-4b60-a0b9-cde00afcfdc2}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Storage\Storage.csproj">
+      <Project>{76AF10EC-DA95-46FE-B120-92F0DF5B50DF}</Project>
+      <Name>Storage</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
