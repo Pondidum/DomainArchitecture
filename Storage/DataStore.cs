@@ -16,5 +16,10 @@ namespace Storage
 		{
 			return new StreamSession(_container);
 		}
+
+		public RelationalSession CreateRelationalSession()
+		{
+			return new RelationalSession();
+		}
 	}
 }

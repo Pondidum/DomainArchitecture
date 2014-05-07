@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="DataStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RelationalSession.cs" />
     <Compile Include="StreamSession.cs" />
   </ItemGroup>
   <ItemGroup>
