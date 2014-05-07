@@ -12,9 +12,9 @@ namespace Storage
 			
 		}
 
-		public Session CreateStreamSession()
+		public StreamSession CreateStreamSession()
 		{
-			return new Session(_container);
+			return new StreamSession(_container);
 		}
 	}
 }

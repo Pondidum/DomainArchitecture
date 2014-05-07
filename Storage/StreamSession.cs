@@ -6,12 +6,12 @@ using StructureMap;
 
 namespace Storage
 {
-	public class Session : IDisposable
+	public class StreamSession : IDisposable
 	{
 		private readonly IContainer _container;
 		private readonly Dictionary<Type, List<DomainEvent>> _store;
 
-		public Session(IContainer container)
+		public StreamSession(IContainer container)
 		{
 			_container = container;
 			_store = new Dictionary<Type, List<DomainEvent>>();
