@@ -3,8 +3,6 @@ using System.Data.Common;
 using System.Linq;
 using Dapper;
 using Domain;
-using Domain.Infrastructure;
-using Newtonsoft.Json;
 
 namespace Storage.Relational.Queries
 {
@@ -25,14 +23,9 @@ namespace Storage.Relational.Queries
 				"select id, aggregateID, order, type, json from candidates where aggregateID = @id order by order asc",
 				new { id = _id });
 
-			var events = dtos
-				.Select(dto => JsonConvert.DeserializeObject(dto.Json, Type.GetType(dto.Type)))
-				.Cast<DomainEvent>();
-
-			var candidate = new Candidate();
-			((IEventStream)candidate).LoadFromEvents(events);
-			
-			return candidate;
+			return DomainObjectBuilder
+				.Build<Candidate>(dtos)
+				.First();
 		}
 	}
 }
