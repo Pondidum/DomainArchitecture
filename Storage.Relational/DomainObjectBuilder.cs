@@ -11,7 +11,7 @@ namespace Storage.Relational
 		public static IEnumerable<T> Build<T>(IEnumerable<EventDto> eventDtos) where T : IEventStream, new()
 		{
 			return eventDtos
-				.Select(dto => JsonConvert.DeserializeObject(dto.Json, Type.GetType(dto.Type)))
+				.Select(dto => JsonConvert.DeserializeObject(dto.Json, LookupType(dto.Type)))
 				.Cast<DomainEvent>()
 				.OrderBy(e => e.SequenceID)
 				.GroupBy(e => e.AggregateID)
@@ -21,6 +21,11 @@ namespace Storage.Relational
 					entity.LoadFromEvents(group);
 					return entity;
 				});
+		}
+
+		private static Type LookupType(string name)
+		{
+			return typeof (DomainEvent).Assembly.GetType(name);
 		}
 	}
 }
