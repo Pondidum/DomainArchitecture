@@ -17,7 +17,7 @@ namespace Storage.Relational.Queries
 		public IEnumerable<Candidate> Execute()
 		{
 			var dtos = _connection.Query<EventDto>(
-				"select id, aggregateID, order, type, json from candidates");
+				"select id, aggregateID, sequence, type, json from candidates");
 
 			return DomainObjectBuilder.Build<Candidate>(dtos);
 		}

@@ -25,9 +25,13 @@ namespace Storage.Relational.Commands
 
 			var events = stream.GetEvents().ToList();
 
-			var lastEvent = _connection.Query<int>("select max(order) from candidates where aggregateID = @id").Single();
+			var lastEvent = _connection
+				.Query<long?>(
+					"select max(sequence) from candidates where aggregateID = @id",
+					new { id = _candidate.ID})
+				.SingleOrDefault();
 
-			if (lastEvent >= events.First().SequenceID)
+			if (lastEvent.HasValue && lastEvent.Value >= events.First().SequenceID)
 			{
 				throw new DBConcurrencyException();
 			}
@@ -37,13 +41,13 @@ namespace Storage.Relational.Commands
 				var dtos = events.Select(e => new EventDto()
 				{
 					AggregateID = e.AggregateID,
-					Order =  e.SequenceID,
-					Type =  e.GetType().Name,
+					Sequence =  e.SequenceID,
+					Type =  e.GetType().FullName,
 					Json = JsonConvert.SerializeObject(e)
 				});
 
 				_connection.Execute(
-					"insert into candidates (aggregateID, order, type, json), values(@aggregateID, @order, @type, @json)", 
+					"insert into candidates (aggregateID, sequence, type, json) values(@aggregateID, @sequence, @type, @json)", 
 					dtos);
 
 				transaction.Commit();

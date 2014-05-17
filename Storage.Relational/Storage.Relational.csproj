@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\SaveCandidate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EventDto.cs" />
     <Compile Include="DomainObjectBuilder.cs" />

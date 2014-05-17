@@ -20,7 +20,7 @@ namespace Storage.Relational.Queries
 		public Candidate Execute()
 		{
 			var dtos = _session.Query<EventDto>(
-				"select id, aggregateID, order, type, json from candidates where aggregateID = @id order by order asc",
+				"select id, aggregateID, sequence, type, json from candidates where aggregateID = @id order by sequence asc",
 				new { id = _id });
 
 			return DomainObjectBuilder
