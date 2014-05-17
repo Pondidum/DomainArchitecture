@@ -39,7 +39,14 @@
       <HintPath>..\packages\structuremap.3.0.3.116\lib\net40\StructureMap.Net4.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>..\packages\System.Data.SQLite.Core.1.0.92.0\lib\net45\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq">
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.92.0\lib\net45\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -59,10 +66,18 @@
       <Project>{38eb3a57-f6c4-4b60-a0b9-cde00afcfdc2}</Project>
       <Name>Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Storage\Storage.csproj">
-      <Project>{76AF10EC-DA95-46FE-B120-92F0DF5B50DF}</Project>
-      <Name>Storage</Name>
+    <ProjectReference Include="..\Storage.Relational\Storage.Relational.csproj">
+      <Project>{1af47797-3bb4-4df6-b2af-4d58026b51aa}</Project>
+      <Name>Storage.Relational</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="x64\SQLite.Interop.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x86\SQLite.Interop.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,9 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Data.SQLite;
+using System.IO;
 using Domain;
 using Domain.Infrastructure;
 using Storage;
+using Storage.Relational.Commands;
+using Storage.Relational.Queries;
 using StructureMap;
 
 namespace Interface.Cli
@@ -12,31 +14,27 @@ namespace Interface.Cli
 	{
 		static void Main(string[] args)
 		{
+			File.Delete("temp.db");
+			SQLiteConnection.CreateFile("temp.db");
 
-			var container = new Container(c => c.Scan(s =>
+			var connection = new SQLiteConnection("Data Source=temp.db;Version=3;");
+			connection.Open();
+
+			using (var command = connection.CreateCommand())
 			{
-				s.AssemblyContainingType<DomainEvent>();
-				s.WithDefaultConventions();
-			}));
-
-			var store = new DataStore(container);
-
-			using (var session = store.CreateStreamSession())
-			{
-				var input = Candidate.Create("Andy", new DateTime(1986, 5, 27));
-				
-				session.Store(input);
-
-				var output = session.GetByID<Candidate>(input.ID);
-
-				Console.WriteLine("Input:  {0}", input.ID);
-				Console.WriteLine("Output: {0}", output.ID);
-
+				command.CommandText = "create table candidates (id uniqueidentifier, aggregateID uniqueidentifier, sequence int, type varchar(8000), json varchar)";
+				command.ExecuteNonQuery();
 			}
 
-			Console.ReadKey();
+			var candidate = Candidate.Create("Andy", new DateTime(1986, 05, 27));
+
+			var save = new SaveCandidate(connection, candidate);
+			save.Execute();
+
+			var load = new GetCandidateByID(connection, candidate.ID);
+			var c2 = load.Execute();
 		}
 	}
 
-	
+
 }
