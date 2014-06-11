@@ -52,8 +52,6 @@
     <Compile Include="DomainObjectBuilder.cs" />
     <Compile Include="Queries\GetAllCandidates.cs" />
     <Compile Include="Queries\GetCandidateByID.cs" />
-    <Compile Include="Session.cs" />
-    <Compile Include="Store.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">
